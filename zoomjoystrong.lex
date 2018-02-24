@@ -15,7 +15,6 @@
 "rectangle"				{ yylval.str = strdup(yytext); return RECTANGLE; }
 "set_color"  			{ yylval.str = strdup(yytext); return SET_COLOR; }
 \;						{ return END_STATEMENT; }
-[ \t\n]				;
-[^\;\t\n(set_color|rectangle|circle|line|point)([0-9]+|[0-9]+\.[0-9]+)] ;
+[ \t\n]					;
 
 %%

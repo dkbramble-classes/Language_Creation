@@ -2,7 +2,6 @@
 	#include <stdio.h>
 	void yyerror(const char* msg);
 	int yylex();
-	//int num_contacts = 0;
 %}
 
 %error-verbose
@@ -30,11 +29,16 @@
 %type<d> FLOAT
 
 %%
-statement_list:	statement END
+statement_list:	statement
 	|	statement statement_list
 ;
 
-statement: something something END_STATEMENT
+statement: circle_command END_STATEMENT
+	|	line_command END_STATEMENT
+	|	point_command END_STATEMENT
+	|	rectangle_command END_STATEMENT
+	|	setcolor_command END_STATEMENT
+	|	end_command
 
 ;
 
@@ -58,22 +62,13 @@ setcolor_command: SET_COLOR INT INT INT
 	{set_color($2, $3, $4);}
 ;
 
-contact:	name SEPARATOR address SEPARATOR PHONE SEPARATOR email
-		{ printf("\n----------\n"); ++num_contacts; }
+end_command: END
+	{finish();}
 ;
 
-name:		SALUTATION STRING STRING 
-		{ printf("%s %s %s\n", $1, $2, $3);	}
-;
-
-address:	NUMBER STRING ROAD_TYPE STRING STRING NUMBER 
-		{ printf("%d %s %s\n%s, %s %d\n", $1, $2, $3, $4, $5, $6); }
-;
-
-email:		STRING AT_SYMBOL STRING DOMAIN
-		{ printf("%s@%s%s", $1, $3, $4); }
 %%
 int main(int argc, char** argv){
+	setup();
 	yyparse();
 	return 0;
 }
