@@ -1,6 +1,7 @@
 %{
 	#include "zoomjoystrong.tab.h"
 	#include <stdlib.h>
+	#include <string.h>
 %}
 
 %option noyywrap
@@ -15,6 +16,7 @@
 "rectangle"				{ yylval.str = strdup(yytext); return RECTANGLE; }
 "set_color"  			{ yylval.str = strdup(yytext); return SET_COLOR; }
 \;						{ return END_STATEMENT; }
+\*						{ return END;}
 [ \t\n]					;
 
 %%
