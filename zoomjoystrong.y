@@ -3,6 +3,7 @@
 	#include "zoomjoystrong.h"
 	void yyerror(const char* msg);
 	int yylex();
+	int color = 0;
 %}
 
 %error-verbose
@@ -60,7 +61,7 @@ rectangle_command: RECTANGLE INT INT INT INT
 ;
 
 setcolor_command: SET_COLOR INT INT INT
-	{set_color($2, $3, $4);}
+	{set_color($2, $3, $4); printf("%d %d %d\n", $2, $3, $4); }
 ;
 
 end_command: END
@@ -71,6 +72,7 @@ end_command: END
 int main(int argc, char** argv){
 	setup();
 	yyparse();
+	//printf("%d", color);
 	return 0;
 }
 void yyerror(const char* msg){
