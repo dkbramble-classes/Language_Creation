@@ -441,7 +441,7 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    34,    34,    35,    38,    39,    40,    41,    42,    43,
-      47,    51,    55,    59,    63,    67
+      47,    58,    69,    80,    91,   102
 };
 #endif
 
@@ -1228,42 +1228,77 @@ yyreduce:
     {
         case 10:
 #line 48 "zoomjoystrong.y" /* yacc.c:1646  */
-    {circle((yyvsp[-2].i),(yyvsp[-1].i),(yyvsp[0].i));}
-#line 1233 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+    {
+		if ((yyvsp[-2].i) <= 1024 && (yyvsp[-1].i) <= 768 && (yyvsp[0].i) <= 768 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
+			circle((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+		}
+		else{
+			printf("circle inputs are beyond valid screen dimensions\n");
+		}
+	}
+#line 1240 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 52 "zoomjoystrong.y" /* yacc.c:1646  */
-    {line((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));}
-#line 1239 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 59 "zoomjoystrong.y" /* yacc.c:1646  */
+    {
+		if ((yyvsp[-3].i) <= 1024 && (yyvsp[-2].i) <= 768 && (yyvsp[-1].i) <= 1024 && (yyvsp[0].i) <= 768 && (yyvsp[-3].i) >= 0 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
+			line((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+		}
+		else{
+			printf("line inputs are beyond valid screen dimensions\n");
+		}
+	}
+#line 1253 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 56 "zoomjoystrong.y" /* yacc.c:1646  */
-    {point((yyvsp[-1].i), (yyvsp[0].i));}
-#line 1245 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 70 "zoomjoystrong.y" /* yacc.c:1646  */
+    {
+		if ((yyvsp[-1].i) <= 1024 && (yyvsp[0].i) <= 768 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
+			point((yyvsp[-1].i), (yyvsp[0].i));
+		}
+		else{
+			printf("point inputs are beyond valid screen dimensions\n");
+		}
+	}
+#line 1266 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 60 "zoomjoystrong.y" /* yacc.c:1646  */
-    {rectangle((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));}
-#line 1251 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 81 "zoomjoystrong.y" /* yacc.c:1646  */
+    {
+		if ((yyvsp[-3].i) <= 1024 && (yyvsp[-2].i) <= 768 && (yyvsp[-1].i) <= 1024 && (yyvsp[0].i) <= 768 && (yyvsp[-3].i) >= 0 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
+			rectangle((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+		}
+		else{
+			printf("rectangle inputs are beyond valid screen dimensions\n");
+		}
+	}
+#line 1279 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 64 "zoomjoystrong.y" /* yacc.c:1646  */
-    {set_color((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i)); printf("%d %d %d\n", (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i)); }
-#line 1257 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 92 "zoomjoystrong.y" /* yacc.c:1646  */
+    {
+		if ((yyvsp[-2].i) <= 255 && (yyvsp[-1].i) <= 255 && (yyvsp[0].i) <= 255 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
+			set_color((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+		}
+		else{
+			printf("set_color inputs are beyond valid color values\n");
+		}
+	}
+#line 1292 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 68 "zoomjoystrong.y" /* yacc.c:1646  */
-    {finish();}
-#line 1263 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 103 "zoomjoystrong.y" /* yacc.c:1646  */
+    {color++;finish();}
+#line 1298 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1267 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1302 "zoomjoystrong.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1491,7 +1526,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 71 "zoomjoystrong.y" /* yacc.c:1906  */
+#line 107 "zoomjoystrong.y" /* yacc.c:1906  */
 
 int main(int argc, char** argv){
 	setup();

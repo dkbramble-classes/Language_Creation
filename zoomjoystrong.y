@@ -3,7 +3,6 @@
 	#include "zoomjoystrong.h"
 	void yyerror(const char* msg);
 	int yylex();
-	int color = 0;
 %}
 
 %error-verbose
@@ -45,28 +44,64 @@ statement: circle_command END_STATEMENT
 ;
 
 circle_command: CIRCLE INT INT INT
-	{circle($2,$3,$4);}
+	{
+		if ($2 <= 1024 && $3 <= 768 && $4 <= 768 && $2 >= 0 && $3 >= 0 && $4 >= 0){
+			circle($2, $3, $4);
+		}
+		else{
+			printf("circle inputs are beyond valid screen dimensions\n");
+		}
+	}
 ;
 
 line_command: LINE INT INT INT INT
-	{line($2, $3, $4, $5);}
+	{
+		if ($2 <= 1024 && $3 <= 768 && $4 <= 1024 && $5 <= 768 && $2 >= 0 && $3 >= 0 && $4 >= 0 && $5 >= 0){
+			line($2, $3, $4, $5);
+		}
+		else{
+			printf("line inputs are beyond valid screen dimensions\n");
+		}
+	}
 ;
 
 point_command: POINT INT INT
-	{point($2, $3);}
+	{
+		if ($2 <= 1024 && $3 <= 768 && $2 >= 0 && $3 >= 0){
+			point($2, $3);
+		}
+		else{
+			printf("point inputs are beyond valid screen dimensions\n");
+		}
+	}
 ;
 
 rectangle_command: RECTANGLE INT INT INT INT
-	{rectangle($2, $3, $4, $5);}
+	{
+		if ($2 <= 1024 && $3 <= 768 && $4 <= 1024 && $5 <= 768 && $2 >= 0 && $3 >= 0 && $4 >= 0 && $5 >= 0){
+			rectangle($2, $3, $4, $5);
+		}
+		else{
+			printf("rectangle inputs are beyond valid screen dimensions\n");
+		}
+	}
 ;
 
 setcolor_command: SET_COLOR INT INT INT
-	{set_color($2, $3, $4); printf("%d %d %d\n", $2, $3, $4); }
+	{
+		if ($2 <= 255 && $3 <= 255 && $4 <= 255 && $2 >= 0 && $3 >= 0 && $4 >= 0){
+			set_color($2, $3, $4);
+		}
+		else{
+			printf("set_color inputs are beyond valid color values\n");
+		}
+	}
 ;
 
 end_command: END
 	{finish();}
 ;
+
 
 %%
 int main(int argc, char** argv){
