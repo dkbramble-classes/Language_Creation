@@ -62,7 +62,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 12 "zoomjoystrong.y" /* yacc.c:1909  */
+#line 17 "zoomjoystrong.y" /* yacc.c:1909  */
  int i; char* str; float d;
 
 #line 69 "zoomjoystrong.tab.h" /* yacc.c:1909  */

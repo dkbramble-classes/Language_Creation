@@ -64,13 +64,18 @@
 /* Copy the first part of user declarations.  */
 #line 1 "zoomjoystrong.y" /* yacc.c:339  */
 
+	/*****************************************************************
+	Bison file for drawing shapes with SDL2, uses Lex tokens to run C code
+
+	@author Dane Bramble
+	@version February 2018
+	*****************************************************************/
 	#include <stdio.h>
 	#include "zoomjoystrong.h"
 	void yyerror(const char* msg);
 	int yylex();
-	int color = 0;
 
-#line 74 "zoomjoystrong.tab.c" /* yacc.c:339  */
+#line 79 "zoomjoystrong.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -122,10 +127,10 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 12 "zoomjoystrong.y" /* yacc.c:355  */
+#line 17 "zoomjoystrong.y" /* yacc.c:355  */
  int i; char* str; float d;
 
-#line 129 "zoomjoystrong.tab.c" /* yacc.c:355  */
+#line 134 "zoomjoystrong.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -142,7 +147,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 146 "zoomjoystrong.tab.c" /* yacc.c:358  */
+#line 151 "zoomjoystrong.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -440,8 +445,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    34,    34,    35,    38,    39,    40,    41,    42,    43,
-      47,    58,    69,    80,    91,   102
+       0,    39,    39,    40,    43,    44,    45,    46,    47,    48,
+      51,    62,    73,    84,    95,   106
 };
 #endif
 
@@ -1227,78 +1232,78 @@ yyreduce:
   switch (yyn)
     {
         case 10:
-#line 48 "zoomjoystrong.y" /* yacc.c:1646  */
+#line 52 "zoomjoystrong.y" /* yacc.c:1646  */
     {
 		if ((yyvsp[-2].i) <= 1024 && (yyvsp[-1].i) <= 768 && (yyvsp[0].i) <= 768 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
-			circle((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+			circle((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i)); //draws only if in valid ranges
 		}
 		else{
 			printf("circle inputs are beyond valid screen dimensions\n");
 		}
 	}
-#line 1240 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1245 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 59 "zoomjoystrong.y" /* yacc.c:1646  */
+#line 63 "zoomjoystrong.y" /* yacc.c:1646  */
     {
 		if ((yyvsp[-3].i) <= 1024 && (yyvsp[-2].i) <= 768 && (yyvsp[-1].i) <= 1024 && (yyvsp[0].i) <= 768 && (yyvsp[-3].i) >= 0 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
-			line((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+			line((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i)); //draws only if in valid ranges
 		}
 		else{
 			printf("line inputs are beyond valid screen dimensions\n");
 		}
 	}
-#line 1253 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1258 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 70 "zoomjoystrong.y" /* yacc.c:1646  */
+#line 74 "zoomjoystrong.y" /* yacc.c:1646  */
     {
 		if ((yyvsp[-1].i) <= 1024 && (yyvsp[0].i) <= 768 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
-			point((yyvsp[-1].i), (yyvsp[0].i));
+			point((yyvsp[-1].i), (yyvsp[0].i)); //draws only if in valid ranges
 		}
 		else{
 			printf("point inputs are beyond valid screen dimensions\n");
 		}
 	}
-#line 1266 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1271 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 81 "zoomjoystrong.y" /* yacc.c:1646  */
+#line 85 "zoomjoystrong.y" /* yacc.c:1646  */
     {
 		if ((yyvsp[-3].i) <= 1024 && (yyvsp[-2].i) <= 768 && (yyvsp[-1].i) <= 1024 && (yyvsp[0].i) <= 768 && (yyvsp[-3].i) >= 0 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
-			rectangle((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
-		}
+			rectangle((yyvsp[-3].i), (yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i)); //draws only if in valid ranges
+		} 
 		else{
 			printf("rectangle inputs are beyond valid screen dimensions\n");
 		}
 	}
-#line 1279 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1284 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 92 "zoomjoystrong.y" /* yacc.c:1646  */
+#line 96 "zoomjoystrong.y" /* yacc.c:1646  */
     {
 		if ((yyvsp[-2].i) <= 255 && (yyvsp[-1].i) <= 255 && (yyvsp[0].i) <= 255 && (yyvsp[-2].i) >= 0 && (yyvsp[-1].i) >= 0 && (yyvsp[0].i) >= 0){
-			set_color((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i));
+			set_color((yyvsp[-2].i), (yyvsp[-1].i), (yyvsp[0].i)); //sets color only if in valid ranges
 		}
 		else{
 			printf("set_color inputs are beyond valid color values\n");
 		}
 	}
-#line 1292 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1297 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 103 "zoomjoystrong.y" /* yacc.c:1646  */
-    {color++;finish();}
-#line 1298 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 107 "zoomjoystrong.y" /* yacc.c:1646  */
+    {finish();}
+#line 1303 "zoomjoystrong.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1302 "zoomjoystrong.tab.c" /* yacc.c:1646  */
+#line 1307 "zoomjoystrong.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1526,12 +1531,11 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 107 "zoomjoystrong.y" /* yacc.c:1906  */
+#line 111 "zoomjoystrong.y" /* yacc.c:1906  */
 
 int main(int argc, char** argv){
-	setup();
+	setup();//Opens Drawing Panel
 	yyparse();
-	//printf("%d", color);
 	return 0;
 }
 void yyerror(const char* msg){
