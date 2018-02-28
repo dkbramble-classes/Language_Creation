@@ -10,9 +10,11 @@
 	void yyerror(const char* msg);
 	int yylex();
 %}
-
 %error-verbose
 %start statement_list
+/*****************************************************************
+ @param i, str, d - value of the token found, to be used to call functions
+ *****************************************************************/
 
 %union { int i; char* str; float d;}
 
@@ -51,7 +53,7 @@ statement: circle_command END_STATEMENT
 circle_command: CIRCLE INT INT INT
 	{
 		if ($2 <= 1024 && $3 <= 768 && $4 <= 768 && $2 >= 0 && $3 >= 0 && $4 >= 0){
-			circle($2, $3, $4); //draws only if in valid ranges
+			circle($2, $3, $4); //draws circle only if in valid ranges
 		}
 		else{
 			printf("circle inputs are beyond valid screen dimensions\n");
@@ -62,7 +64,7 @@ circle_command: CIRCLE INT INT INT
 line_command: LINE INT INT INT INT
 	{
 		if ($2 <= 1024 && $3 <= 768 && $4 <= 1024 && $5 <= 768 && $2 >= 0 && $3 >= 0 && $4 >= 0 && $5 >= 0){
-			line($2, $3, $4, $5); //draws only if in valid ranges
+			line($2, $3, $4, $5); //draws line only if in valid ranges
 		}
 		else{
 			printf("line inputs are beyond valid screen dimensions\n");
@@ -73,7 +75,7 @@ line_command: LINE INT INT INT INT
 point_command: POINT INT INT
 	{
 		if ($2 <= 1024 && $3 <= 768 && $2 >= 0 && $3 >= 0){
-			point($2, $3); //draws only if in valid ranges
+			point($2, $3); //draws point only if in valid ranges
 		}
 		else{
 			printf("point inputs are beyond valid screen dimensions\n");
@@ -84,7 +86,7 @@ point_command: POINT INT INT
 rectangle_command: RECTANGLE INT INT INT INT
 	{
 		if ($2 <= 1024 && $3 <= 768 && $4 <= 1024 && $5 <= 768 && $2 >= 0 && $3 >= 0 && $4 >= 0 && $5 >= 0){
-			rectangle($2, $3, $4, $5); //draws only if in valid ranges
+			rectangle($2, $3, $4, $5); //draws rectangle only if in valid ranges
 		} 
 		else{
 			printf("rectangle inputs are beyond valid screen dimensions\n");
@@ -111,9 +113,9 @@ end_command: END
 %%
 int main(int argc, char** argv){
 	setup();//Opens Drawing Panel
-	yyparse();
+	yyparse(); //parses to find tokens
 	return 0;
 }
 void yyerror(const char* msg){
-	fprintf(stderr, "ERROR! %s\n", msg);
+	fprintf(stderr, "ERROR! %s\n", msg); //prints error message on terminal if syntax is incorrect
 }
